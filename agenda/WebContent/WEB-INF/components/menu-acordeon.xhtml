@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+    <ui:component>
+       <div class="span3">
+			<div class="accordion" id="menu">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						 <button class="accordion-toggle btn btn-block btn-inverse" data-toggle="collapse" data-parent="#menu" href="#cadastros">Cadastros</button>
+					</div>
+					<div id="cadastros" class="accordion-body collapse">
+						<div class="accordion-inner">Pessoas</div>
+						<div class="accordion-inner">Eventos</div>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						 <button class="accordion-toggle btn btn-block btn-inverse" data-toggle="collapse" data-parent="#menu" type="button" href="#relatorios">Relatórios</button>
+					</div>
+					<div id="relatorios" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<h:form>
+								<h:commandLink id="relPessoas" styleClass="btn btn-link" value="Exibir relatório de pessoas" actionListener="#{pessoaReportMB.execute}" onclick="javascript:window.open('','pessoasPopUp','height=640,width=900,toolbar=no,scrollbars=no')" target="pessoasPopUp"/>
+							</h:form>
+						</div>
+						<div class="accordion-inner">
+							<h:form>
+								<h:commandLink id="relAgendas" styleClass="btn btn-link" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" />
+							</h:form>
+						</div>
+						<div class="accordion-inner">
+							<h:form>
+								<h:commandLink id="relMyAgenda" styleClass="btn btn-link" value="Exibir meus eventos" actionListener="#{agendaReportMB.executeMy}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" />
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </ui:component>
+</html>

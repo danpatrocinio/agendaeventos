@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1 -transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:comp="http://agenda.taglibs.com">
+
+	<h:head>
+		<!-- Incluindo o CSS do Bootstrap -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		
+		<title>Agenda de Eventos App</title>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>  
+		<script type="text/javascript" src="bootstrap/js/bootstrap-min.js"></script>  
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />  
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />  
+		<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap localmente-->
+		<script src="bootstrap/js/jquery-1.9.1.min.js"></script>
+		
+		<!-- Incluindo o JavaScript do Bootstrap -->
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			/* Sticky footer styles
+		      -------------------------------------------------- */
+		      html,
+		      body {
+		      	padding-top: 30px;
+		        height: 94%;
+		        background-color: rgb(200, 200, 200);
+		        /* The html and body elements cannot have any padding or margin. */
+		      }
+		
+			  #menu {
+		        padding-right: 20px;
+			  }
+
+		      /* Wrapper for page content to push down footer */
+		      #wrap {
+		      	padding-left: 200px;
+		        min-height: 100%;
+		        height: auto !important;
+		        height: 100%;
+		        width: 80%;
+		        /* Negative indent footer by it's height */
+		        margin: 0 auto -60px;
+		      }
+		
+		      /* Set the fixed height of the footer here */
+		      #push,
+		      #footer {
+		        height: 80px;
+		      }
+		      #footer {
+		        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		  		background-color: #363636;
+		      }
+		
+		      /* Lastly, apply responsive CSS fixes as necessary */
+		      @media (max-width: 767px) {
+		        #footer {
+		          margin-left: -20px;
+		          margin-right: -20px;
+		          padding-left: 20px;
+		          padding-right: 20px;
+		        }
+		      }
+	    </style>
+	</h:head>
+	<h:body>
+		<comp:navbar />
+		<comp:menu-acordeon />
+	
+		<!-- Part 1: Wrap all page content here -->
+		<div id="wrap">
+			<!-- Begin page content -->
+			<div class="container span9">
+				<div class="page-header"><p><strong>Título</strong></p></div>
+			</div>
+		</div>
+
+		<div id="footer">
+		  <div class="container">
+		  	<p class="muted credit">Agenda de eventos by <a href="https://twitter.com/danpatrocinio" target="_blank">Daniel Patrocínio</a></p>		    
+		  </div>
+		</div>
+	</h:body>
+</html>
