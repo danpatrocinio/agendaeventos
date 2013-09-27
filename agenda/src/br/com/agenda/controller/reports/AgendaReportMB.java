@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import br.com.agenda.entity.Agenda;
+import br.com.agenda.entity.Pessoa;
 import br.com.agenda.sessionbeans.AgendaRepository;
+import br.com.agenda.sessionbeans.PessoaRepository;
 
 @ManagedBean
 @RequestScoped
@@ -18,6 +20,9 @@ public class AgendaReportMB extends BaseReportMB<Agenda> {
 
 	@EJB
 	private AgendaRepository agendaRep;
+
+	@EJB
+	private PessoaRepository pessoaRep;
 
 	public void execute() {
 		try {
@@ -31,7 +36,11 @@ public class AgendaReportMB extends BaseReportMB<Agenda> {
 
 	public void executeMy() {
 		try {
-			addParam("pPessoa", "Visualizando os eventos da pessoa P");
+
+			// TODO pegar pessoa da session...
+			Pessoa p = pessoaRep.getById(Pessoa.class, new Long(1));
+
+			addParam("pPessoa", pessoaRep.formatCpfCnpj(p.getCpfcnpj()) + " - " + p.getNome());
 
 			super.gerarRelatorio(agendaRep.getAgendasByDate(new Long(1)));
 		} catch (ClassNotFoundException e) {

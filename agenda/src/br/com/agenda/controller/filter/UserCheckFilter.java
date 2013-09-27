@@ -20,7 +20,7 @@ public class UserCheckFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 	        throws IOException, ServletException {
 
-		System.out.println("Hello World");
+		System.out.println("filter working...");
 		chain.doFilter(request, response);
 	}
 

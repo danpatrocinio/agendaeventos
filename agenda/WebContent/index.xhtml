@@ -1,89 +1,115 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1 -transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"  
-    xmlns:f="http://java.sun.com/jsf/core"  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:comp="http://agenda.taglibs.com">
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<!-- Incluindo o CSS do Bootstrap -->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-		
-		<title>Agenda de Eventos App</title>
-		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>  
-		<script type="text/javascript" src="bootstrap/js/bootstrap-min.js"></script>  
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />  
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />  
-		<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap localmente-->
-		<script src="bootstrap/js/jquery-1.9.1.min.js"></script>
-		
-		<!-- Incluindo o JavaScript do Bootstrap -->
-		<script src="bootstrap/js/bootstrap.min.js"></script>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Agenda de Eventos</title>
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+		<link href="bootstrap/css/style.css" rel="stylesheet" media="screen"/>
+
+		<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
 		<style type="text/css">
-			/* Sticky footer styles
-		      -------------------------------------------------- */
-		      html,
+		 html,
 		      body {
-		      	padding-top: 30px;
-		        height: 94%;
-		        background-color: rgb(200, 200, 200);
-		        /* The html and body elements cannot have any padding or margin. */
+		      	padding-top: 20px;
+		        height: 93%;
+		        background-color: rgb(245, 245, 245);
 		      }
-		
-			  #menu {
-		        padding-right: 20px;
-			  }
-
-		      /* Wrapper for page content to push down footer */
-		      #wrap {
-		      	padding-left: 200px;
-		        min-height: 100%;
-		        height: auto !important;
-		        height: 100%;
-		        width: 80%;
-		        /* Negative indent footer by it's height */
-		        margin: 0 auto -60px;
-		      }
-		
-		      /* Set the fixed height of the footer here */
-		      #push,
-		      #footer {
-		        height: 80px;
-		      }
-		      #footer {
-		        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-		  		background-color: #363636;
-		      }
-		
-		      /* Lastly, apply responsive CSS fixes as necessary */
-		      @media (max-width: 767px) {
-		        #footer {
-		          margin-left: -20px;
-		          margin-right: -20px;
-		          padding-left: 20px;
-		          padding-right: 20px;
-		        }
-		      }
-	    </style>
-	</h:head>
-	<h:body>
-		<comp:navbar />
-		<comp:menu-acordeon />
-	
-		<!-- Part 1: Wrap all page content here -->
-		<div id="wrap">
-			<!-- Begin page content -->
-			<div class="container span9">
-				<div class="page-header"><p><strong>Título</strong></p></div>
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="navbar navbar-fixed-top navbar-inverse">
+					<div class="navbar-inner">
+						<div class="container-fluid">
+							<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"></a>
+							<ul class="nav">
+	    						<li><a href="#"><i class="icon-calendar icon-white"></i></a></li>
+			  				</ul>
+			  				<a href="index.xhtml" class="brand">Agenda de eventos</a>
+							<div class="nav-collapse collapse navbar-responsive-collapse">
+								<p class="navbar-text pull-right">
+				             		<a href="#" class="navbar-link">Username</a>
+				           		</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
+		<div id="wrap">
+			<div class="container span12">
+				<div class="tabbable tabs-left">
+					<ul class="nav nav-pills nav-stacked span3">
+						<li><a data-toggle="tab" href="#pessoas">Pessoas</a></li>
+						<li><a data-toggle="tab" href="#eventos">Eventos</a></li>
+					</ul>
+					<div class="tab-content span8">
+						<div id="pessoas" class="tab-pane">
+							<div class="page-header"><p><h2>Pessoas</h2></p></div>
+							<h:form>
+								<p:dataTable styleClass="table table-striped table-condensed" var="pessoa" value="#{pessoas.pessoas}">  
+							        <p:column headerText="Código">  
+							            <h:outputText value="#{pessoa.iPessoa}" />  
+							        </p:column>
+							        <p:column headerText="CPF">
+							            <h:outputText value="#{pessoa.cpfcnpj}" />  
+							        </p:column>
+							        <p:column headerText="Nome">  
+							            <h:outputText value="#{pessoa.nome}" />  
+							        </p:column>
+							        <p:column headerText="E-mail">  
+							            <h:outputText value="#{pessoa.email}" />  
+							        </p:column>
+							        <p:column headerText="Nascimento">  
+							            <h:outputText value="#{pessoa.dtnascimento}" />  
+							        </p:column>
+							    </p:dataTable>
+								<h:commandLink id="relPessoas" styleClass="btn btn-small btn-primary" value="Exibir relatório de pessoas" actionListener="#{pessoaReportMB.execute}" onclick="javascript:window.open('','pessoasPopUp','height=640,width=900,toolbar=no,scrollbars=no')" target="pessoasPopUp"/>
+							</h:form>
+						</div>
+						<div id="eventos" class="tab-pane">
+							<div class="page-header"><p><h2>Eventos</h2></p></div>
+							<h:form>
+								<p:dataTable styleClass="table table-striped table-condensed" var="evento" value="#{eventos.eventos}">  
+									<p:column headerText="O quê">
+										<h:outputText value="#{evento.descricao}" />  
+									</p:column>
+									<p:column headerText="Onde">  
+										<h:outputText value="#{evento.local}" />  
+									</p:column>
+									<p:column headerText="Início">  
+										<h:outputText value="#{evento.dh_inicio}">
+											<f:convertDateTime pattern="dd/MM/yyyy"/>
+										</h:outputText>
+									</p:column>
+									<p:column headerText="Fim">  
+										<h:outputText value="#{evento.dh_fim}">
+											<f:convertDateTime pattern="dd/MM/yyyy"/>
+										</h:outputText>  
+									</p:column>
+								</p:dataTable>
+								<a><h:commandLink id="relAgendas" styleClass="btn btn-small btn-primary" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
+								<a><h:commandLink id="relMyAgenda" styleClass="btn btn-small btn-primary" value="Exibir meus eventos" actionListener="#{agendaReportMB.executeMy}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>							
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div id="footer">
 		  <div class="container">
 		  	<p class="muted credit">Agenda de eventos by <a href="https://twitter.com/danpatrocinio" target="_blank">Daniel Patrocínio</a></p>		    
 		  </div>
 		</div>
-	</h:body>
+	</body>
 </html>

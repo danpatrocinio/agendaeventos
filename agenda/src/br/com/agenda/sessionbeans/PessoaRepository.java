@@ -15,6 +15,10 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
 	@EJB
 	AgendaConvidadoRepository agendaConvidadoRep;
 
+	public String formatCpfCnpj(String cpfCnpj) {
+		return super.format(cpfCnpj);
+	}
+
 	@Override
 	public List<Pessoa> getAll(Class<Pessoa> classe) {
 		return super.getAll(classe);

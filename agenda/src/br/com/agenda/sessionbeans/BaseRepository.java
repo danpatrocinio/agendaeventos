@@ -82,6 +82,20 @@ public abstract class BaseRepository<T extends Serializable> implements DAO<T, S
 		this.em = em;
 	}
 
+	String format(String cpfCnpj) {
+		if (cpfCnpj == null || "".equals(cpfCnpj)) {
+			return "";
+		}
+		return cpfCnpj.length() == 11 ? cpfCnpj.substring(0, 3) + "." + cpfCnpj.substring(3, 6)
+		        + "." + cpfCnpj.substring(6, 9) + "-" + cpfCnpj.substring(9, 11) : cpfCnpj
+		        .substring(0, 2)
+		        + "."
+		        + cpfCnpj.substring(2, 5)
+		        + "."
+		        + cpfCnpj.substring(5, 8)
+		        + "/" + cpfCnpj.substring(8, 12) + "-" + cpfCnpj.substring(12, 14);
+	}
+
 	@PreDestroy
 	private void destroy() {
 		try {
