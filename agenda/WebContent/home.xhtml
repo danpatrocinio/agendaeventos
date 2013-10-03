@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">  
+  
+    <h:head>  
+		<title>Agenda de Eventos</title>
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+		<link href="bootstrap/css/style.css" rel="stylesheet" media="screen"/>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    </h:head>  
+      
+    <h:body>
+    <div class="container-fluid">
+			<div class="row-fluid">
+				<div class="navbar navbar-fixed-top navbar-inverse">
+					<div class="navbar-inner">
+						<div class="container-fluid">
+							<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"></a>
+							<ul class="nav">
+	    						<li><a href="#"><i class="icon-calendar icon-white"></i></a></li>
+			  				</ul>
+			  				<a href="index.xhtml" class="brand">Agenda de eventos</a>
+							<div class="nav-collapse collapse navbar-responsive-collapse">
+								<p class="navbar-text pull-right" >
+				             		<a href="#" class="navbar-link"><h:outputText value="#{homeMB.nomeCurrentPessoa}" /></a>		             		
+		             				<a href="login.xhtml">Sair</a> 
+	           					</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/><br/><br/>
+		<h:form>
+		    <p:growl id="messages" autoUpdate="true"/>
+			<div class="span3">
+				<p:calendar value="#{homeMB.today}" mode="inline" id="inlineCal"/>
+			</div>
+			<div class="span9">
+				<p:tabView id="tabView">  
+				    <p:tab id="pessoas" title="Pessoas">
+						<p:dataTable id="datatable" var="pessoa" value="#{pessoas.pessoas}" paginator="true" rows="5"  
+									 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >  
+							<p:column headerText="Código">  
+								<h:outputText value="#{pessoa.iPessoa}" />  
+							</p:column>
+							<p:column headerText="CPF">
+								<h:outputText value="#{pessoa.cpfcnpj}" />  
+							</p:column>
+							<p:column headerText="Nome">  
+								<h:outputText value="#{pessoa.nome}" />  
+							</p:column>
+							<p:column headerText="E-mail">  
+								<h:outputText value="#{pessoa.email}" />  
+							</p:column>
+							<p:column headerText="Nascimento">  
+								<h:outputText value="#{pessoa.dtnascimento}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>  
+							</p:column>
+						</p:dataTable>
+						<a><p:commandLink id="relPessoas" styleClass="btn btn btn-small" value="Exibir relatório de pessoas" actionListener="#{pessoaReportMB.execute}" onclick="javascript:window.open('','pessoasPopUp','height=640,width=900,toolbar=no,scrollbars=no')" target="pessoasPopUp" /></a> 
+				    </p:tab>
+				    <p:tab id="eventos" title="Eventos">
+						<p:dataTable styleClass="table table-striped table-condensed" var="evento" value="#{eventos.eventos}"
+				 					 paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">  
+							<p:column headerText="O quê">
+								<h:outputText value="#{evento.descricao}" />  
+							</p:column>
+							<p:column headerText="Onde">  
+								<h:outputText value="#{evento.local}" />  
+							</p:column>
+							<p:column headerText="Início">  
+								<h:outputText value="#{evento.dh_inicio}">
+									<f:convertDateTime pattern="dd/MM/yyyy"/>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Fim">  
+								<h:outputText value="#{evento.dh_fim}">
+									<f:convertDateTime pattern="dd/MM/yyyy"/>
+								</h:outputText>  
+							</p:column>
+						</p:dataTable>
+						<a><p:commandLink id="relAgendas" styleClass="btn btn-small" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
+						<a><p:commandLink id="relMyAgenda" styleClass="btn btn-small" value="Exibir meus eventos" actionListener="#{agendaReportMB.executeMy}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
+				    </p:tab>
+				</p:tabView>
+			</div>
+		</h:form>
+	 </h:body>  
+</html>

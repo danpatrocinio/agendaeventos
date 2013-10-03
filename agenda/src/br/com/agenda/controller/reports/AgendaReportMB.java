@@ -3,10 +3,14 @@ package br.com.agenda.controller.reports;
 import java.sql.SQLException;
 
 import javax.ejb.EJB;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
+import br.com.agenda.controller.filters.LoginCheckFilter;
 import br.com.agenda.entity.Agenda;
 import br.com.agenda.entity.Pessoa;
 import br.com.agenda.sessionbeans.AgendaRepository;
@@ -37,8 +41,12 @@ public class AgendaReportMB extends BaseReportMB<Agenda> {
 	public void executeMy() {
 		try {
 
-			// TODO pegar pessoa da session...
-			Pessoa p = pessoaRep.getById(Pessoa.class, new Long(1));
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
+
+			HttpSession session = req.getSession();
+
+			Pessoa p = (Pessoa) session.getAttribute(LoginCheckFilter.AGENDA_CURRENT_USER);
 
 			addParam("pPessoa", pessoaRep.formatCpfCnpj(p.getCpfcnpj()) + " - " + p.getNome());
 

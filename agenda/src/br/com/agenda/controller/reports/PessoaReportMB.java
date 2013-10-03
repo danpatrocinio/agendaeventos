@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import br.com.agenda.entity.Pessoa;
 import br.com.agenda.sessionbeans.PessoaRepository;
 
-@ManagedBean
+@ManagedBean(name = "pessoaReportMB")
 @RequestScoped
 public class PessoaReportMB extends BaseReportMB<Pessoa> {
 

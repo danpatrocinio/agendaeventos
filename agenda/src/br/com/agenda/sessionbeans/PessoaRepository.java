@@ -36,6 +36,15 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
 		return p;
 	}
 
+	public Pessoa getPessoaToLogin(String email, String senha) {
+		Query q = getEm().createQuery(
+		        "SELECT p FROM Pessoa p WHERE email = :email AND senha = :senha");
+		q.setParameter("email", email);
+		q.setParameter("senha", senha);
+		Pessoa p = (Pessoa) q.getSingleResult();
+		return p;
+	}
+
 	@Override
 	public void remove(Pessoa pessoa) throws Exception {
 

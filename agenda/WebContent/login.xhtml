@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>Agenda de Eventos</title>
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+		<link href="bootstrap/css/style.css" rel="stylesheet" media="screen"/>
+
+		<style type="text/css">
+		 html,
+		      body {
+		      	padding-top: 20px;
+		        height: 93%;
+		        background-color: rgb(245, 245, 245);
+		      }
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="navbar navbar-fixed-top navbar-inverse">
+					<div class="navbar-inner">
+						<div class="container-fluid">
+							<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"></a>
+							<ul class="nav">
+	    						<li><a href="#"><i class="icon-calendar icon-white"></i></a></li>
+			  				</ul>
+			  				<a href="index.xhtml" class="brand">Agenda de eventos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="wrap">
+			<div class="container span12">
+				<h:form id="form">
+				    <p:growl id="messages" autoUpdate="true"/>
+
+	                <h:panelGrid id="p-login">
+	                    <h:outputLabel for="email">E-mail</h:outputLabel>
+	                    <h:inputText id="email" value="#{loginMB.emailUser}" required="true"/>
+	                    <h:outputLabel for="senha">Senha</h:outputLabel>
+	                    <h:inputSecret id="senha" value="#{loginMB.senhaUser}"/>
+	                
+		                <p:separator /><br/>
+		                
+                		<p:commandButton id="logar" styleClass="btn btn-small" value="Logar" actionListener="#{loginMB.logar}" action="home.xhtml"/>
+	                </h:panelGrid>
+	    
+				</h:form>
+			</div>
+		</div>
+		
+		<div id="footer">
+		  <div class="container">
+		  	<p class="muted credit">Agenda de eventos by <a href="https://twitter.com/danpatrocinio" target="_blank">Daniel Patrocínio</a></p>		    
+		  </div>
+		</div>
+	</body>
+</html>

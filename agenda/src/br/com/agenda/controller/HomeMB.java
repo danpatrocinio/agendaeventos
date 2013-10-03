@@ -1,39 +1,62 @@
 package br.com.agenda.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.faces.application.FacesMessage;
+import javax.servlet.http.HttpServletRequest;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.event.SelectEvent;
+import br.com.agenda.controller.filters.LoginCheckFilter;
+import br.com.agenda.entity.Pessoa;
 
 @ManagedBean(name = "homeMB")
 @ViewScoped
 public class HomeMB {
 
-	private Date selectedDay;
+	public void delete() {
+		System.out.println("Deletando...");
+	}
 
 	public String getMensagem() {
 		return "Bem vindo a Agenda de Eventos!";
 	}
 
-	public Date getSelectedDay() {
+	public String getNomeCurrentPessoa() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
 
-		return selectedDay;
+		Pessoa p = (Pessoa) req.getSession().getAttribute(LoginCheckFilter.AGENDA_CURRENT_USER);
+
+		if (p != null) {
+			return p.getNome();
+		}
+
+		return "";
 	}
 
-	public void handleDateSelect(SelectEvent event) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		SimpleDateFormat format = new SimpleDateFormat("d/M/yyyy");
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected",
-		        format.format(event.getObject())));
+	public Date getToday() {
+		return new Date(System.currentTimeMillis());
 	}
 
-	public void setSelectedDay(Date date) {
-		selectedDay = date;
+	public void sair() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
+
+		req.getSession().setAttribute(LoginCheckFilter.AGENDA_CURRENT_USER, null);
+	}
+
+	public void save() {
+		System.out.println("Salvando...");
+	}
+
+	public void setToday(Date today) {
+
+	}
+
+	public void update() {
+		System.out.println("atualizando...");
 	}
 
 }

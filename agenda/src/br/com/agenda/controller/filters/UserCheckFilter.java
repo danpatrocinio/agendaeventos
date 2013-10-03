@@ -1,4 +1,4 @@
-package br.com.agenda.controller.filter;
+package br.com.agenda.controller.filters;
 
 import java.io.IOException;
 

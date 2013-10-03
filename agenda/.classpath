@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/groovy-all-1.7.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jasperreports-5.1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HibernateJPA"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
