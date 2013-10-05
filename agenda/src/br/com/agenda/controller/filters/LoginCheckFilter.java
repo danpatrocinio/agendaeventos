@@ -40,10 +40,11 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 		Pessoa p = (Pessoa) session.getAttribute(LoginCheckFilter.AGENDA_CURRENT_USER);
 
 		if (p == null && !LoginCheckFilter.allowedURIs.contains(req.getRequestURI())) {
-			System.out.println(req.getRequestURI());
+			System.out.println("URL: " + req.getRequestURI());
 			doLogin(request, response, req);
 			return;
 		}
+		System.out.println(p != null ? p.getNome() : "null" + " está logado...");
 
 		chain.doFilter(request, response);
 	}
@@ -56,6 +57,7 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 		if (LoginCheckFilter.allowedURIs == null) {
 			LoginCheckFilter.allowedURIs = new ArrayList<String>();
 			LoginCheckFilter.allowedURIs.add(fConfig.getInitParameter("loginActionURI"));
+			LoginCheckFilter.allowedURIs.add("/agenda/index.xhtml");
 			LoginCheckFilter.allowedURIs.add("/agenda/home.xhtml");
 			LoginCheckFilter.allowedURIs.add("/agenda/login.xhtml");
 			LoginCheckFilter.allowedURIs.add("/agenda/bootstrap/css/style.css");

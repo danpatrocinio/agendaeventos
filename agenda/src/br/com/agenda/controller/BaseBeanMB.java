@@ -6,9 +6,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
-public class BaseBean implements Serializable {
+public class BaseBeanMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	protected void addBemVindo(String user) {
+		FacesContext.getCurrentInstance().addMessage("bemvindo",
+		        new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem vindo", user));
+	}
 
 	protected void addErrorMessage(String errorMessage) {
 		addErrorMessage(null, errorMessage);

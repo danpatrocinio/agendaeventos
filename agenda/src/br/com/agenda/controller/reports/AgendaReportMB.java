@@ -50,7 +50,7 @@ public class AgendaReportMB extends BaseReportMB<Agenda> {
 
 			addParam("pPessoa", pessoaRep.formatCpfCnpj(p.getCpfcnpj()) + " - " + p.getNome());
 
-			super.gerarRelatorio(agendaRep.getAgendasByDate(new Long(1)));
+			super.gerarRelatorio(agendaRep.getAgendasByDate(p.getiPessoa()));
 		} catch (ClassNotFoundException e) {
 			addMessage("", e.getMessage());
 		} catch (SQLException e) {

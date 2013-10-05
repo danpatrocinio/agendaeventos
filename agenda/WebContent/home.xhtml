@@ -26,7 +26,7 @@
 							<div class="nav-collapse collapse navbar-responsive-collapse">
 								<p class="navbar-text pull-right" >
 				             		<a href="#" class="navbar-link"><h:outputText value="#{homeMB.nomeCurrentPessoa}" /></a>		             		
-		             				<a href="login.xhtml">Sair</a> 
+		             				<a href="index.xhtml">Sair</a> 
 	           					</p>
 							</div>
 						</div>
@@ -36,12 +36,10 @@
 		</div>
 		<br/><br/><br/>
 		<h:form>
-		    <p:growl id="messages" autoUpdate="true"/>
-			<div class="span3">
-				<p:calendar value="#{homeMB.today}" mode="inline" id="inlineCal"/>
-			</div>
 			<div class="span9">
-				<p:tabView id="tabView">  
+				<p:messages id="bemvindo" showSummary="true" showDetail="true" autoUpdate="true" closable="true" />  
+				<p:tabView id="tabView">
+					<p:messages id="messages" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />  
 				    <p:tab id="pessoas" title="Pessoas">
 						<p:dataTable id="datatable" var="pessoa" value="#{pessoas.pessoas}" paginator="true" rows="5"  
 									 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >  
@@ -63,7 +61,8 @@
 								</h:outputText>  
 							</p:column>
 						</p:dataTable>
-						<a><p:commandLink id="relPessoas" styleClass="btn btn btn-small" value="Exibir relatório de pessoas" actionListener="#{pessoaReportMB.execute}" onclick="javascript:window.open('','pessoasPopUp','height=640,width=900,toolbar=no,scrollbars=no')" target="pessoasPopUp" /></a> 
+						<br/>
+						<a><h:commandLink id="relPessoas" styleClass="btn btn btn-small" value="Exibir relatório de pessoas" actionListener="#{pessoaReportMB.execute}" onclick="javascript:window.open('','pessoasPopUp','height=640,width=900,toolbar=no,scrollbars=no')" target="pessoasPopUp" /></a>
 				    </p:tab>
 				    <p:tab id="eventos" title="Eventos">
 						<p:dataTable styleClass="table table-striped table-condensed" var="evento" value="#{eventos.eventos}"
@@ -85,10 +84,13 @@
 								</h:outputText>  
 							</p:column>
 						</p:dataTable>
-						<a><p:commandLink id="relAgendas" styleClass="btn btn-small" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
-						<a><p:commandLink id="relMyAgenda" styleClass="btn btn-small" value="Exibir meus eventos" actionListener="#{agendaReportMB.executeMy}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
+						<a><h:commandLink id="relAgendas" styleClass="btn btn-small" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
+						<a><h:commandLink id="relMyAgenda" styleClass="btn btn-small" value="Exibir meus eventos" actionListener="#{agendaReportMB.executeMy}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
 				    </p:tab>
 				</p:tabView>
+			</div>
+			<div class="span3">
+				<p:calendar value="#{homeMB.today}" mode="inline" id="inlineCal"/>
 			</div>
 		</h:form>
 	 </h:body>  

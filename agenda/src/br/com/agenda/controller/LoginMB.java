@@ -14,7 +14,7 @@ import br.com.agenda.sessionbeans.PessoaRepository;
 
 @ManagedBean(name = "loginMB")
 @ViewScoped
-public class LoginMB extends BaseBean {
+public class LoginMB extends BaseBeanMB {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +44,8 @@ public class LoginMB extends BaseBean {
 		HttpSession session = req.getSession();
 
 		session.setAttribute(LoginCheckFilter.AGENDA_CURRENT_USER, p);
+
+		addBemVindo(p.getNome());
 
 	}
 

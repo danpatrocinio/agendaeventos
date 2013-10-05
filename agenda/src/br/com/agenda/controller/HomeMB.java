@@ -13,11 +13,8 @@ import br.com.agenda.entity.Pessoa;
 
 @ManagedBean(name = "homeMB")
 @ViewScoped
-public class HomeMB {
-
-	public void delete() {
-		System.out.println("Deletando...");
-	}
+public class HomeMB extends BaseBeanMB {
+	private static final long serialVersionUID = 3782952422940488883L;
 
 	public String getMensagem() {
 		return "Bem vindo a Agenda de Eventos!";
@@ -47,16 +44,7 @@ public class HomeMB {
 		req.getSession().setAttribute(LoginCheckFilter.AGENDA_CURRENT_USER, null);
 	}
 
-	public void save() {
-		System.out.println("Salvando...");
-	}
-
 	public void setToday(Date today) {
-
-	}
-
-	public void update() {
-		System.out.println("atualizando...");
 	}
 
 }
