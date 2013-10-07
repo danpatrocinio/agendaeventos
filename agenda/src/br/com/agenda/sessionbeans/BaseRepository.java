@@ -27,6 +27,13 @@ public abstract class BaseRepository<T extends Serializable> implements DAO<T, S
 	@PersistenceContext
 	private EntityManager em;
 
+	@Override
+	public Long countAll(Class<T> classe) {
+		Long count = (Long) this.em.createQuery(
+		        "SELECT count(e) FROM " + classe.getSimpleName() + " e").getSingleResult();
+		return count;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll(Class<T> classe) {

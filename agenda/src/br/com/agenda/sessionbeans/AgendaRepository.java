@@ -82,10 +82,10 @@ public class AgendaRepository extends BaseRepository<Agenda> {
 		if (agenda.getDescricao() == null) {
 			throw new Exception("A descrição do evento deve ser informada!");
 		}
-		if (agenda.getDh_inicio() == null) {
+		if (agenda.getDhinicio() == null) {
 			throw new Exception("A data/horário de início do evento deve ser informada!");
 		}
-		if (agenda.getDh_fim() != null && agenda.getDh_inicio().after(agenda.getDh_fim())) {
+		if (agenda.getDhfim() != null && agenda.getDhinicio().after(agenda.getDhfim())) {
 			throw new Exception(
 			        "A data/horário de termino do evento deve ser posterior a data/horário de início!");
 		}

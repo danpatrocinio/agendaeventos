@@ -4,9 +4,15 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import br.com.agenda.util.DateAdapter;
 
 @Entity
 @Table(name = "pessoas")
+@XmlRootElement
 public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,7 +21,9 @@ public class Pessoa implements Serializable {
 	private String cpfcnpj;
 
 	@Column(name = "dt_nascimento")
-	private Date dtnascimento;
+	@XmlElement(name = "dtNascimento")
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	private Date dt_nascimento;
 
 	private String email;
 
@@ -33,7 +41,7 @@ public class Pessoa implements Serializable {
 	}
 
 	public Date getDtnascimento() {
-		return dtnascimento;
+		return dt_nascimento;
 	}
 
 	public String getEmail() {
@@ -56,8 +64,8 @@ public class Pessoa implements Serializable {
 		this.cpfcnpj = cpfcnpj;
 	}
 
-	public void setDtnascimento(Date dtnascimento) {
-		this.dtnascimento = dtnascimento;
+	public void setDtnascimento(Date dt_nascimento) {
+		this.dt_nascimento = dt_nascimento;
 	}
 
 	public void setEmail(String email) {

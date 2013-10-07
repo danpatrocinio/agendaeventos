@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface DAO<T, I extends Serializable> {
 
+	public Long countAll(Class<T> classe);
+
 	public List<T> getAll(Class<T> classe);
 
 	public T getById(Class<T> classe, I id);

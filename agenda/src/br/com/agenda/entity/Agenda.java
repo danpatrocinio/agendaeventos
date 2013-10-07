@@ -4,9 +4,15 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import br.com.agenda.util.DateAdapter;
 
 @Entity
 @Table(name = "agendas")
+@XmlRootElement
 public class Agenda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,8 +20,12 @@ public class Agenda implements Serializable {
 	private String descricao;
 
 	@Column(name = "dh_fim")
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	@XmlElement(name = "Fim")
 	private Timestamp dh_fim;
 
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	@XmlElement(name = "Inicio")
 	@Column(name = "dh_inicio")
 	private Timestamp dh_inicio;
 
@@ -36,11 +46,11 @@ public class Agenda implements Serializable {
 		return descricao;
 	}
 
-	public Timestamp getDh_fim() {
+	public Timestamp getDhfim() {
 		return dh_fim;
 	}
 
-	public Timestamp getDh_inicio() {
+	public Timestamp getDhinicio() {
 		return dh_inicio;
 	}
 
@@ -64,11 +74,11 @@ public class Agenda implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public void setDh_fim(Timestamp dh_fim) {
+	public void setDhfim(Timestamp dh_fim) {
 		this.dh_fim = dh_fim;
 	}
 
-	public void setDh_inicio(Timestamp dh_inicio) {
+	public void setDhinicio(Timestamp dh_inicio) {
 		this.dh_inicio = dh_inicio;
 	}
 

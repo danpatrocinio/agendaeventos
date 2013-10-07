@@ -38,200 +38,65 @@
 								<h2>Bem vindo ao</h2>
 								<h1>Agenda de Eventos!</h1>
 								<br/> 
-								<p>
+								<p><small>
 									Este é um aplicativo onde você pode registrar seus eventos e 
-									gerenciar sua lista de contatos de forma simples!
+									gerenciar sua lista de convidados de forma simples!
+								</small>
 								</p>
 							</div>
 							<div id="footer">
 							  <div class="container">
-							  	<p class="muted credit">Agenda de eventos by <a href="https://twitter.com/danpatrocinio" target="_blank">Daniel Patrocínio</a></p>		    
+							  	<p class="muted credit">Agenda de eventos by <a href="https://twitter.com/danpatrocinio" target="_blank">Daniel Patrocínio</a></p>
 							  </div>
 							</div>
 						</div>
 						<div class="span4">
-							<div class="hero-unit well">
+							<div class="well well-small">
 								<h5><i class="icon-user"></i>&nbsp;Já é usuário? Log-se!</h5>
-							    <h:inputText id="email" type="text" class="input-large" value="#{loginMB.emailUser}" placeholder="Email ou nome de usuário" required="true"/>
-							    <h:inputSecret id="senha" type="password" class="input-large" value="#{loginMB.senhaUser}" placeholder="Senha" required="true"/>						    
-							    <p:commandButton id="logar" styleClass="btn btn-link" value="Entrar" actionListener="#{loginMB.logar}" action="home.xhtml" update="messages"/>						    	
+								<h:panelGrid columns="4">
+									<h:outputLabel value="Email: "/>
+								    <h:inputText id="loginEmail" value="#{loginMB.emailUser}" label="email"/>
+									<h:outputLabel value=""/>
+								    <p:watermark for="loginEmail" value="Email ou nome de usuário" />
+									<h:outputLabel value="Senha: "/>
+								    <h:inputSecret id="loginSenha" value="#{loginMB.senhaUser}" style="margin-top:12px;"/>
+							    	<p:commandButton id="logar" styleClass="btn btn-success btn-small" value="Entrar" style="margin-left:27px" actionListener="#{loginMB.logar}" action="home.xhtml" update="messages"/>						    	
+							    </h:panelGrid>
 							</div>
-							<div class="hero-unit well">
+							<div class="well well-small">
 								<h5><i class="icon-plus-sign"></i>&nbsp;Ainda não? Cadastre-se agora!</h5>
-						    	<input id="inputUser" type="text" class="input-xlarge" placeholder="Nome completo" />
-						    	<input id="inputEmail" type="text" class="input-xlarge" placeholder="Seu e-mail ou nome de usuário" />
-						    	<input id="inputPassword" type="password" class="input-xlarge" placeholder="Crie uma senha" />
-						    	<input id="inputPassword2" type="password" class="input-xlarge" placeholder="Repita sua senha" />
-								<input id="inputCpfCnpj" type="text" class="input-xlarge" placeholder="Digite o seu CPF ou CNPJ" />
-								<label>
-						    		<strong>Data de nascimento</strong>
-					    		</label>
-						    	<select id="dia" class="input-small">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
-									<option>11</option>
-									<option>12</option>
-									<option>13</option>
-									<option>14</option>
-									<option>15</option>
-									<option>16</option>
-									<option>17</option>
-									<option>18</option>
-									<option>19</option>
-									<option>20</option>
-									<option>21</option>
-									<option>22</option>
-									<option>23</option>
-									<option>24</option>
-									<option>25</option>
-									<option>26</option>
-									<option>27</option>
-									<option>28</option>
-									<option>29</option>
-									<option>30</option>
-									<option>31</option>
-								</select>
-								<select id="mes" class="input-small">
-									<option>Jan</option>
-									<option>Fev</option>
-									<option>Mar</option>
-									<option>Abr</option>
-									<option>Mai</option>
-									<option>Jun</option>
-									<option>Jul</option>
-									<option>Ago</option>
-									<option>Set</option>
-									<option>Out</option>
-									<option>Nov</option>
-									<option>Dez</option>
-								</select>
-								<select id="ano" class="input-small">
-									<option>2013</option>
-									<option>2012</option>
-									<option>2011</option>
-									<option>2010</option>
-									<option>2009</option>
-									<option>2008</option>
-									<option>2007</option>
-									<option>2006</option>
-									<option>2005</option>
-									<option>2004</option>
-									<option>2003</option>
-									<option>2002</option>
-									<option>2001</option>
-									<option>2000</option>
-									<option>1999</option>
-									<option>1998</option>
-									<option>1997</option>
-									<option>1996</option>
-									<option>1995</option>
-									<option>1994</option>
-									<option>1993</option>
-									<option>1992</option>
-									<option>1991</option>
-									<option>1990</option>
-									<option>1989</option>
-									<option>1988</option>
-									<option>1987</option>
-									<option>1986</option>
-									<option>1985</option>
-									<option>1984</option>
-									<option>1983</option>
-									<option>1982</option>
-									<option>1981</option>
-									<option>1980</option>
-									<option>1979</option>
-									<option>1978</option>
-									<option>1977</option>
-									<option>1976</option>
-									<option>1975</option>
-									<option>1974</option>
-									<option>1973</option>
-									<option>1972</option>
-									<option>1971</option>
-									<option>1970</option>
-									<option>1969</option>
-									<option>1968</option>
-									<option>1967</option>
-									<option>1966</option>
-									<option>1965</option>
-									<option>1964</option>
-									<option>1963</option>
-									<option>1962</option>
-									<option>1961</option>
-									<option>1960</option>
-									<option>1959</option>
-									<option>1958</option>
-									<option>1957</option>
-									<option>1956</option>
-									<option>1955</option>
-									<option>1954</option>
-									<option>1953</option>
-									<option>1952</option>
-									<option>1951</option>
-									<option>1950</option>
-									<option>1949</option>
-									<option>1948</option>
-									<option>1947</option>
-									<option>1946</option>
-									<option>1945</option>
-									<option>1944</option>
-									<option>1943</option>
-									<option>1942</option>
-									<option>1941</option>
-									<option>1940</option>
-									<option>1939</option>
-									<option>1938</option>
-									<option>1937</option>
-									<option>1936</option>
-									<option>1935</option>
-									<option>1934</option>
-									<option>1933</option>
-									<option>1932</option>
-									<option>1931</option>
-									<option>1930</option>
-									<option>1929</option>
-									<option>1928</option>
-									<option>1927</option>
-									<option>1926</option>
-									<option>1925</option>
-									<option>1924</option>
-									<option>1923</option>
-									<option>1922</option>
-									<option>1921</option>
-									<option>1920</option>
-									<option>1919</option>
-									<option>1918</option>
-									<option>1917</option>
-									<option>1916</option>
-									<option>1915</option>
-									<option>1914</option>
-									<option>1913</option>
-									<option>1912</option>
-									<option>1911</option>
-									<option>1910</option>
-									<option>1909</option>
-									<option>1908</option>
-									<option>1907</option>
-									<option>1906</option>
-									<option>1905</option>
-									<option>1904</option>
-									<option>1903</option>
-									<option>1902</option>
-									<option>1901</option>
-									<option>1900</option>
-								</select>
-								<p />
+								<h:panelGrid columns="3">
+									<h:outputLabel value="Nome: "/>
+									<p:inputText id="nome" value="#{pessoasMB.pessoa.nome}" styleClass="input-xlarge" label="nome" />  
+									<p:watermark for="nome" value="Nome" />
+									<h:outputLabel value="Email: "/>
+									<p:inputText id="email" value="#{pessoasMB.pessoa.email}" styleClass="input-xlarge" label="email" />  
+									<p:watermark for="email" value="Email" />
+									<h:outputLabel value="Senha: "/>
+								    <h:inputSecret id="senha1" value="#{pessoasMB.pessoa.senha}" styleClass="input-xlarge" label="senha" title="Pelo menos 3 letras e 3 números"/>
+									<p:watermark for="senha1" value="Senha" />
+									<h:outputLabel value="Confirme a senha: "/>
+								    <h:inputSecret id="senha2" value="#{pessoasMB.senha2}" styleClass="input-xlarge" label="senha" title="Pelo menos 3 letras e 3 números"/>
+									<p:watermark for="senha2" value="Confirme a senha" />
+									<h:outputLabel value="CPF/CNPJ: "/>
+									<p:inputText id="cpfCnpj" value="#{pessoasMB.pessoa.cpfcnpj}" styleClass="input-xlarge" label="cpfCnpj" />  
+									<p:watermark for="cpfCnpj" value="CPF ou CNPJ" />
+								</h:panelGrid>
+								<h:panelGrid columns="4">
+									<h:outputLabel value="Data de nascimento: "/>
+									<h:selectOneMenu value="#{pessoasMB.diaNascimento}" styleClass="input-small">
+									    <f:selectItems value="#{pessoasMB.dias}" var="dia" itemLabel="dia.label" itemValue="dia.value"/>  
+									</h:selectOneMenu>
+									<h:selectOneMenu value="#{pessoasMB.mesNascimento}" styleClass="input-small">
+									    <f:selectItems value="#{pessoasMB.meses}" var="mes" itemLabel="mes.label" itemValue="mes.value"/>  
+									</h:selectOneMenu>
+									<h:selectOneMenu value="#{pessoasMB.anoNascimento}" styleClass="input-small">
+									    <f:selectItems value="#{pessoasMB.anos}" var="ano" itemLabel="ano.label" itemValue="ano.value"/>  
+									</h:selectOneMenu>
+								</h:panelGrid>
+								<br />
 								<p align="center">
-									<a class="btn btn-success btn-block"  href="#">Cadastre-se »</a>
+									<p:commandButton id="create" styleClass="btn btn-success btn-block btn-large" value="Criar conta »" actionListener="#{pessoasMB.criarConta}" action="home.xhtml" update="messages"/>
 								</p>
 							</div>
 						</div>

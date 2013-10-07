@@ -37,7 +37,9 @@
 		<br/><br/><br/>
 		<h:form>
 			<div class="span9">
-				<p:messages id="bemvindo" showSummary="true" showDetail="true" autoUpdate="true" closable="true" />  
+				<p:messages id="bemvindo" showSummary="true" showDetail="true" autoUpdate="true" closable="true" />
+				<h:outputText value="Total de pessoas:" />
+				<h:outputText>http://localhost:8080/agenda/rest/pessoas/count</h:outputText>  
 				<p:tabView id="tabView">
 					<p:messages id="messages" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />  
 				    <p:tab id="pessoas" title="Pessoas">
@@ -74,14 +76,14 @@
 								<h:outputText value="#{evento.local}" />  
 							</p:column>
 							<p:column headerText="Início">  
-								<h:outputText value="#{evento.dh_inicio}">
-									<f:convertDateTime pattern="dd/MM/yyyy"/>
+								<h:outputText value="#{evento.dhinicio}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 								</h:outputText>
 							</p:column>
 							<p:column headerText="Fim">  
-								<h:outputText value="#{evento.dh_fim}">
-									<f:convertDateTime pattern="dd/MM/yyyy"/>
-								</h:outputText>  
+								<h:outputText value="#{evento.dhfim}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+								</h:outputText>
 							</p:column>
 						</p:dataTable>
 						<a><h:commandLink id="relAgendas" styleClass="btn btn-small" value="Exibir relatório de eventos" actionListener="#{agendaReportMB.execute}" onclick="javascript:window.open('','agendasPopUp','height=640,width=900, toolbar=no, scrollbars=no')" target="agendasPopUp" /></a>
@@ -90,7 +92,7 @@
 				</p:tabView>
 			</div>
 			<div class="span3">
-				<p:calendar value="#{homeMB.today}" mode="inline" id="inlineCal"/>
+				<p:calendar value="#{homeMB.today}" mode="inline" id="inlineCal" locale="pt"/>
 			</div>
 		</h:form>
 	 </h:body>  
