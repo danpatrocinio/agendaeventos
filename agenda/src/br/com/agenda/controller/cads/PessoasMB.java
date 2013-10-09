@@ -3,6 +3,7 @@ package br.com.agenda.controller.cads;
 import java.util.*;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -11,6 +12,7 @@ import javax.faces.model.SelectItem;
 
 import br.com.agenda.controller.BaseBeanMB;
 import br.com.agenda.entity.Pessoa;
+import br.com.agenda.sessionbeans.LoginService;
 import br.com.agenda.sessionbeans.PessoaRepository;
 
 @ManagedBean(name = "pessoasMB")
@@ -22,14 +24,18 @@ public class PessoasMB extends BaseBeanMB {
 	private static final List<SelectItem> meses;
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	LoginService login;
+
 	@EJB
 	PessoaRepository pessoaRep;
 
 	private Integer anoNascimento;
-
 	private Integer diaNascimento;
 	private Integer mesNascimento;
+	private Pessoa pessoa;
 	private String senha2;
+
 	static {
 		dias = new ArrayList<SelectItem>();
 		for (int i = 1; i < 32; i++) {
@@ -59,17 +65,26 @@ public class PessoasMB extends BaseBeanMB {
 	}
 
 	public void criarConta(ActionEvent event) {
-		System.out.println("Criando conta...");
-		Calendar cal = new GregorianCalendar();
-		cal.set(Calendar.DAY_OF_MONTH, getDiaNascimento());
-		cal.set(Calendar.MONTH, getMesNascimento());
-		cal.set(Calendar.YEAR, getAnoNascimento());
-		Date diaNascimento = new Date(cal.getTimeInMillis());
-		System.out.println("Dia nascimento: " + diaNascimento);
-		if (getSenha2() == null || "".equals(getSenha2())) {
-			addErrorMessage("Confirme a senha!");
+		Pessoa p = null;
+		try {
+			pessoa.setDtnascimento(getDataNascimento());
+			p = pessoaRep.criarConta(getPessoa(), getSenha2());
+		} catch (Exception e) {
+			addErrorMessage("messagesCad", "Informe todos os campos!");
 			return;
 		}
+
+		if (p != null) {
+			try {
+				login.doLogar(p.getEmail(), p.getSenha());
+			} catch (Exception e) {
+				addErrorMessage("messagesCad", e.getMessage());
+			}
+		} else {
+			addErrorMessage("messagesCad", "Erro inesperado ao logar!");
+			return;
+		}
+
 	}
 
 	public Integer getAnoNascimento() {
@@ -101,7 +116,10 @@ public class PessoasMB extends BaseBeanMB {
 	}
 
 	public Pessoa getPessoa() {
-		return new Pessoa();
+		if (pessoa == null) {
+			pessoa = new Pessoa();
+		}
+		return pessoa;
 	}
 
 	public List<Pessoa> getPessoas() {
@@ -126,6 +144,14 @@ public class PessoasMB extends BaseBeanMB {
 
 	public void setSenha2(String senha2) {
 		this.senha2 = senha2;
+	}
+
+	private Date getDataNascimento() {
+		Calendar cal = new GregorianCalendar();
+		cal.set(Calendar.DAY_OF_MONTH, getDiaNascimento());
+		cal.set(Calendar.MONTH, getMesNascimento());
+		cal.set(Calendar.YEAR, getAnoNascimento());
+		return new Date(cal.getTimeInMillis());
 	}
 
 }

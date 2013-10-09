@@ -15,6 +15,21 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
 	@EJB
 	AgendaConvidadoRepository agendaConvidadoRep;
 
+	public Pessoa criarConta(Pessoa p, String confirmaSenha) throws Exception {
+		validatePessoa(p);
+		if (confirmaSenha == null || "".equals(confirmaSenha)) {
+			throw new Exception("Confirme a senha!");
+		}
+		if (p.getSenha() == null || "".equals(p.getSenha())) {
+			throw new Exception("Senha não confirmada!");
+		}
+		if (!confirmaSenha.equals(p.getSenha())) {
+			throw new Exception("Senha não confirmada!");
+		}
+
+		return save(p);
+	}
+
 	public String formatCpfCnpj(String cpfCnpj) {
 		return super.format(cpfCnpj);
 	}
@@ -37,6 +52,9 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
 	}
 
 	public Pessoa getPessoaToLogin(String email, String senha) {
+		if (email == null || senha == null) {
+			return null;
+		}
 		Query q = getEm().createQuery(
 		        "SELECT p FROM Pessoa p WHERE email = :email AND senha = :senha");
 		q.setParameter("email", email);
@@ -65,7 +83,7 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
 		return super.update(pessoa);
 	}
 
-	private void validatePessoa(Pessoa pessoa) throws Exception {
+	public void validatePessoa(Pessoa pessoa) throws Exception {
 		if (pessoa.getCpfcnpj() == null || "".equals(pessoa.getCpfcnpj())) {
 			throw new Exception("Informe o CPF!");
 		}

@@ -2,25 +2,21 @@ package br.com.agenda.controller;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.agenda.controller.filters.LoginCheckFilter;
-import br.com.agenda.entity.Pessoa;
-import br.com.agenda.sessionbeans.PessoaRepository;
+import br.com.agenda.sessionbeans.LoginService;
 
 @ManagedBean(name = "loginMB")
-@ViewScoped
+@RequestScoped
 public class LoginMB extends BaseBeanMB {
 
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	PessoaRepository pessoasRep;
-
+	LoginService login;
 	private String emailUser;
 	private String senhaUser;
 
@@ -33,20 +29,18 @@ public class LoginMB extends BaseBeanMB {
 	}
 
 	public void logar() {
-		Pessoa p = pessoasRep.getPessoaToLogin(getEmailUser(), getSenhaUser());
-		if (p == null) {
-			addErrorMessage("Email ou senha inválido(s)!");
+		try {
+			login.doLogar(getEmailUser(), getSenhaUser());
+		} catch (Exception e) {
+			addErrorMessage("messagesLog", e.getMessage());
 		}
+	}
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
-
-		HttpSession session = req.getSession();
-
-		session.setAttribute(LoginCheckFilter.AGENDA_CURRENT_USER, p);
-
-		addBemVindo(p.getNome());
-
+	public void sair() {
+		login.doSair();
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance()
+		        .getExternalContext().getRequest();
+		req.getSession().invalidate();
 	}
 
 	public void setEmailUser(String emailUser) {

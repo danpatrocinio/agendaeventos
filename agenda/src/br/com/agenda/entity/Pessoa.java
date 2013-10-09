@@ -1,7 +1,7 @@
 package br.com.agenda.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;

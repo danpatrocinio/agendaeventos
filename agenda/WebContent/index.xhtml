@@ -5,12 +5,13 @@
     xmlns:f="http://java.sun.com/jsf/core"  
     xmlns:p="http://primefaces.org/ui">
 
-	<head>
+	<h:head>
 		<meta charset="utf-8"/>
 		<title>Agenda de Eventos</title>
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
-	</head>
-	<body>
+		<h:outputScript library="js" name="jquery-1.9.1.min.js" />
+	</h:head>
+	<h:body>
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="navbar navbar-fixed-top navbar-inverse">
@@ -31,8 +32,7 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<h:form id="form">
-					    <p:messages id="messages" globalOnly="false" showSummary="true" showDetail="true" autoUpdate="true" closable="true" />
-					    <br/>
+					    <br/><br/><br/>
 						<div class="span7">
 							<div class="hero-unit">
 								<h2>Bem vindo ao</h2>
@@ -52,38 +52,34 @@
 						</div>
 						<div class="span4">
 							<div class="well well-small">
-								<h5><i class="icon-user"></i>&nbsp;Já é usuário? Log-se!</h5>
-								<h:panelGrid columns="4">
-									<h:outputLabel value="Email: "/>
+							    <p:messages id="messagesLog" globalOnly="true" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />
+								<h5><i class="icon-user"></i>&nbsp;Login:</h5>
+								<h:panelGrid columns="3">
 								    <h:inputText id="loginEmail" value="#{loginMB.emailUser}" label="email"/>
-									<h:outputLabel value=""/>
-								    <p:watermark for="loginEmail" value="Email ou nome de usuário" />
-									<h:outputLabel value="Senha: "/>
-								    <h:inputSecret id="loginSenha" value="#{loginMB.senhaUser}" style="margin-top:12px;"/>
-							    	<p:commandButton id="logar" styleClass="btn btn-success btn-small" value="Entrar" style="margin-left:27px" actionListener="#{loginMB.logar}" action="home.xhtml" update="messages"/>						    	
+								    <p:watermark for="loginEmail" value="Seu email" />
+								    <h:outputLabel />
+								    <h:inputSecret id="loginSenha" value="#{loginMB.senhaUser}" style="margin-top:12px" />
+								    <p:watermark for="loginSenha" value="Sua senha" />
+							    	<p:commandButton id="logar" styleClass="btn btn-success btn-small" value="Entrar" style="margin-left:10px" actionListener="#{loginMB.logar}" action="home.xhtml" update="messagesLog" ajax="false" />
 							    </h:panelGrid>
 							</div>
 							<div class="well well-small">
-								<h5><i class="icon-plus-sign"></i>&nbsp;Ainda não? Cadastre-se agora!</h5>
-								<h:panelGrid columns="3">
-									<h:outputLabel value="Nome: "/>
-									<p:inputText id="nome" value="#{pessoasMB.pessoa.nome}" styleClass="input-xlarge" label="nome" />  
-									<p:watermark for="nome" value="Nome" />
-									<h:outputLabel value="Email: "/>
+							    <p:messages id="messagesCad" globalOnly="true" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />
+								<h5><i class="icon-plus-sign"></i>&nbsp;Cadastre-se:</h5>
+								<h:panelGrid id="pg-pessoa1" columns="1">
+									<p:inputText id="nome" value="#{pessoasMB.pessoa.nome}" styleClass="input-xlarge" label="nome" />
+									<p:watermark for="nome" value="Seu nome" />
 									<p:inputText id="email" value="#{pessoasMB.pessoa.email}" styleClass="input-xlarge" label="email" />  
-									<p:watermark for="email" value="Email" />
-									<h:outputLabel value="Senha: "/>
+									<p:watermark for="email" value="Seu email" />
 								    <h:inputSecret id="senha1" value="#{pessoasMB.pessoa.senha}" styleClass="input-xlarge" label="senha" title="Pelo menos 3 letras e 3 números"/>
-									<p:watermark for="senha1" value="Senha" />
-									<h:outputLabel value="Confirme a senha: "/>
+									<p:watermark for="senha1" value="Sua senha" />
 								    <h:inputSecret id="senha2" value="#{pessoasMB.senha2}" styleClass="input-xlarge" label="senha" title="Pelo menos 3 letras e 3 números"/>
-									<p:watermark for="senha2" value="Confirme a senha" />
-									<h:outputLabel value="CPF/CNPJ: "/>
+									<p:watermark for="senha2" value="Confirme a sua senha" />
 									<p:inputText id="cpfCnpj" value="#{pessoasMB.pessoa.cpfcnpj}" styleClass="input-xlarge" label="cpfCnpj" />  
-									<p:watermark for="cpfCnpj" value="CPF ou CNPJ" />
+									<p:watermark for="cpfCnpj" value="Seu CPF ou CNPJ" />
 								</h:panelGrid>
-								<h:panelGrid columns="4">
-									<h:outputLabel value="Data de nascimento: "/>
+								<h:outputLabel value="Data de nascimento:" />
+								<h:panelGrid id="pg-pessoa2" columns="3">
 									<h:selectOneMenu value="#{pessoasMB.diaNascimento}" styleClass="input-small">
 									    <f:selectItems value="#{pessoasMB.dias}" var="dia" itemLabel="dia.label" itemValue="dia.value"/>  
 									</h:selectOneMenu>
@@ -94,9 +90,8 @@
 									    <f:selectItems value="#{pessoasMB.anos}" var="ano" itemLabel="ano.label" itemValue="ano.value"/>  
 									</h:selectOneMenu>
 								</h:panelGrid>
-								<br />
 								<p align="center">
-									<p:commandButton id="create" styleClass="btn btn-success btn-block btn-large" value="Criar conta »" actionListener="#{pessoasMB.criarConta}" action="home.xhtml" update="messages"/>
+									<p:commandButton id="create" styleClass="btn btn-success btn-block btn-small" value="Cadastrar-se" actionListener="#{pessoasMB.criarConta}" update="messagesCad"/>
 								</p>
 							</div>
 						</div>
@@ -104,7 +99,5 @@
 				</div>
 			</div>
 		</div>
-		
-
-	</body>
+	</h:body>
 </html>

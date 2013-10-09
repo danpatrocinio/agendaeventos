@@ -9,41 +9,40 @@
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
 		<link href="bootstrap/css/style.css" rel="stylesheet" media="screen"/>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-
     </h:head>  
       
     <h:body>
-    <div class="container-fluid">
+    	<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="navbar navbar-fixed-top navbar-inverse">
-					<div class="navbar-inner">
-						<div class="container-fluid">
-							<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"></a>
-							<ul class="nav">
-	    						<li><a href="#"><i class="icon-calendar icon-white"></i></a></li>
-			  				</ul>
-			  				<a href="index.xhtml" class="brand">Agenda de eventos</a>
-							<div class="nav-collapse collapse navbar-responsive-collapse">
-								<p class="navbar-text pull-right" >
-				             		<a href="#" class="navbar-link"><h:outputText value="#{homeMB.nomeCurrentPessoa}" /></a>		             		
-		             				<a href="index.xhtml">Sair</a> 
-	           					</p>
+	    		<h:form>
+					<div class="navbar navbar-fixed-top navbar-inverse">
+						<div class="navbar-inner">
+							<div class="container-fluid">
+								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"></a>
+								<ul class="nav">
+		    						<li><a href="#"><i class="icon-calendar icon-white"></i></a></li>
+				  				</ul>
+				  				<a href="index.xhtml" class="brand">Agenda de eventos</a>
+								<div class="nav-collapse collapse navbar-responsive-collapse">
+									<p class="navbar-text pull-right" >
+					             		<a href="#" class="navbar-link"><h:outputText value="#{homeMB.nomeCurrentPessoa}" /></a>
+						             	<h:commandLink id="sair" value="Sair" action="#{loginMB.sair}" ajax="false" style="margin-left:27px" />
+		           					</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+          		</h:form>
 			</div>
 		</div>
 		<br/><br/><br/>
 		<h:form>
 			<div class="span9">
 				<p:messages id="bemvindo" showSummary="true" showDetail="true" autoUpdate="true" closable="true" />
-				<h:outputText value="Total de pessoas:" />
-				<h:outputText>http://localhost:8080/agenda/rest/pessoas/count</h:outputText>  
 				<p:tabView id="tabView">
 					<p:messages id="messages" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />  
 				    <p:tab id="pessoas" title="Pessoas">
-						<p:dataTable id="datatable" var="pessoa" value="#{pessoas.pessoas}" paginator="true" rows="5"  
+						<p:dataTable id="datatable" var="pessoa" value="#{pessoasMB.pessoas}" paginator="true" rows="5"  
 									 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >  
 							<p:column headerText="Código">  
 								<h:outputText value="#{pessoa.iPessoa}" />  

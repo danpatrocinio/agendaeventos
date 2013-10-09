@@ -58,10 +58,14 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 			LoginCheckFilter.allowedURIs = new ArrayList<String>();
 			LoginCheckFilter.allowedURIs.add(fConfig.getInitParameter("loginActionURI"));
 			LoginCheckFilter.allowedURIs.add("/agenda/index.xhtml");
-			LoginCheckFilter.allowedURIs.add("/agenda/home.xhtml");
 			LoginCheckFilter.allowedURIs.add("/agenda/rest/pessoas/count");
+			LoginCheckFilter.allowedURIs.add("/agenda/RES_NOT_FOUND");
 			LoginCheckFilter.allowedURIs.add("/agenda/bootstrap/css/style.css");
 			LoginCheckFilter.allowedURIs.add("/agenda/bootstrap/css/bootstrap.css");
+			LoginCheckFilter.allowedURIs
+			        .add("/agenda/javax.faces.resource/watermark/watermark.js.xhtml");
+			LoginCheckFilter.allowedURIs
+			        .add("/agenda/javax.faces.resource/watermark/watermark.css.xhtml");
 			LoginCheckFilter.allowedURIs.add("/agenda/WEB-INF/reports/agendas.jasper");
 			LoginCheckFilter.allowedURIs.add("/agenda/WEB-INF/reports/pessoas.jasper");
 			LoginCheckFilter.allowedURIs.add("/agenda/rest/pessoas/bootstrap/css/bootstrap.css");
